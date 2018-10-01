@@ -41,8 +41,28 @@ for lineString in lineStrings:
     if obsLC in ("1","2","3"):
 
         # Add values to dictionary
-        dateDict[recordID] = obsDateTime   
+        dateDict[recordID] = obsDate   
         locationDict[recordID] = (obsLat, obsLon) 
 
 # Indicate script is complete
 print ("Finished")
+
+# Ask the user for a date, specifying the format
+userDate = input("Enter a date (M/D/YYYY")
+
+# Create an empty list
+keyList = []
+
+# Loop through all key, value pairs in the dateDictionary
+for k,v in dateDict.items():
+    #See if the date (the value) matches the user date
+    if v == userDate:
+        keyList.append(k)
+
+# Loop through each key and report the associated date location
+for k in keyList:
+    theDate = dateDict[k]
+    theLocation = locationDict[k]
+    theLat = theLocation[0]
+    theLon = theLocation[1]
+    print("Record {0}: Sara was seen at {1}N & {2}W, on {3}".format(k,theLat,theLon,theDate))
